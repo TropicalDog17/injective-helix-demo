@@ -20,7 +20,8 @@ export default {
     tabs: {
       balances: 'Balances',
       positions: 'Positions',
-      orders: 'Orders'
+      orders: 'Orders',
+      analysis: 'Analysis'
     },
     balances: {
       empty: 'No balances found',

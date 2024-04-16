@@ -39,7 +39,8 @@ export enum CampaignSubPage {
 }
 
 export enum AccountSubPage {
-  Positions = 'account-positions'
+  Positions = 'account-positions',
+  Analysis = 'account-analysis'
 }
 
 export enum TradingBotsSubPage {

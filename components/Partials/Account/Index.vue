@@ -115,6 +115,12 @@ useIntervalFn(refreshUsdTokenPrice, 1000 * 30)
           >
             {{ $t('account.tabs.positions') }}
           </CommonTabMenuLinkItem>
+
+          <CommonTabMenuLinkItem
+            v-bind="{ to: { name: AccountSubPage.Analysis } }"
+          >
+            {{ $t('account.tabs.analysis') }}
+          </CommonTabMenuLinkItem>
         </CommonTabMenu>
 
         <AppHocLoading :status="status">
