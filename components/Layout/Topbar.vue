@@ -5,7 +5,7 @@ const appStore = useAppStore()
 const modalStore = useModalStore()
 const authzStore = useAuthZStore()
 const walletStore = useWalletStore()
-const ninjaPassStore = useNinjaPassStore()
+// const ninjaPassStore = useNinjaPassStore()
 const confetti = useConfetti()
 const router = useRouter()
 
@@ -20,13 +20,13 @@ const emit = defineEmits<{
 
 const isUserConnectedProcessCompleted = ref(false)
 
-const hasNinjaPassCodes = computed(() => {
-  if (!ninjaPassStore.codes) {
-    return false
-  }
+// const hasNinjaPassCodes = computed(() => {
+//   if (!ninjaPassStore.codes) {
+//     return false
+//   }
 
-  return ninjaPassStore.codes.length > 0
-})
+//   return ninjaPassStore.codes.length > 0
+// })
 
 watch(
   () => walletStore.isUserWalletConnected,
@@ -79,7 +79,7 @@ function showNinjaPassModal() {
       </div>
       <div class="flex items-center">
         <LayoutNavItemDummy
-          v-if="walletStore.isUserWalletConnected && hasNinjaPassCodes"
+          v-if="walletStore.isUserWalletConnected"
           class="flex px-0 w-10 items-center justify-center"
           @click="showNinjaPassModal"
         >

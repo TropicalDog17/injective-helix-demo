@@ -11,6 +11,7 @@ import { GeneralException } from '@injectivelabs/exceptions'
 import { getRoutes } from './routes'
 
 export const IS_DEVELOPMENT: boolean = process.env.NODE_ENV === 'development'
+console.log(IS_DEVELOPMENT, 'IS_DEVELOPMENT')
 export const IS_PRODUCTION: boolean = process.env.NODE_ENV === 'production'
 
 const env = {
@@ -90,32 +91,40 @@ const env = {
   VITE_FEE_RECIPIENT: string
 }
 
-export const NETWORK: Network = (env.VITE_NETWORK as Network) || Network.Testnet
+export const NETWORK: Network = Network.Mainnet
 export const IS_DEVNET: Boolean = isDevnet(NETWORK)
 export const IS_TESTNET: Boolean = isTestnet(NETWORK)
 export const IS_STAGING = env.VITE_ENV === 'staging'
-export const IS_MAINNET = isMainnet(NETWORK) || env.VITE_ENV === 'mainnet'
+export const IS_MAINNET = false
+
 
 export const CHAIN_ID: ChainId = (
-  env.VITE_CHAIN_ID
-    ? env.VITE_CHAIN_ID
-    : IS_TESTNET
-    ? ChainId.Testnet
-    : IS_DEVNET
-    ? ChainId.Devnet
-    : ChainId.Mainnet
+  ChainId.Mainnet
 ) as ChainId
 
 export const ETHEREUM_CHAIN_ID: EthereumChainId = env.VITE_ETHEREUM_CHAIN_ID
   ? parseInt(env.VITE_ETHEREUM_CHAIN_ID.toString())
   : parseInt(
-      (IS_TESTNET || IS_DEVNET
-        ? EthereumChainId.Goerli
-        : EthereumChainId.Mainnet
-      ).toString()
-    )
+    (IS_TESTNET || IS_DEVNET
+      ? EthereumChainId.Goerli
+      : EthereumChainId.Mainnet
+    ).toString()
+  )
 
-const endpoints = getNetworkEndpoints(NETWORK)
+function getNetworkEndpointsLocal(network: Network) {
+  return {
+    indexer: 'https://localhost:4444',
+    grpc: 'http://localhost:9091',
+    rpc: 'http://localhost:9091',
+    rest: 'http://localhost:9091',
+    chronos: 'https://localhost:4445',
+    explorer: 'http://localhost:4446',
+    cacheGrpc: 'http://localhost:9091',
+    cacheRest: 'https://localhost:4444',
+    web3gw: 'https://localhost:4444',
+  }
+}
+const endpoints = getNetworkEndpointsLocal(NETWORK)
 
 const restEndpointsNotProvided =
   !env.VITE_SENTRY_REST_ENDPOINT && !env.VITE_SENTRY_HTTP_ENDPOINT
@@ -134,11 +143,7 @@ if (endpointsNotProvided) {
 }
 
 const CAMPAIGN_ENDPOINT =
-  IS_MAINNET && !IS_STAGING
-    ? 'https://k8s.mainnet.campaigns.grpc-web.injective.network'
-    : IS_TESTNET
-    ? 'https://k8s.testnet.campaigns.grpc-web.injective.network'
-    : endpoints.indexer
+  endpoints.indexer
 
 export const ENDPOINTS = {
   ...endpoints,

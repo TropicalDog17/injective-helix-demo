@@ -1,35 +1,35 @@
-import { defineStore } from 'pinia'
-import { fetchNinjaPassCodes } from '@/app/services/ninjapass'
+// import { defineStore } from 'pinia'
+// import { fetchNinjaPassCodes } from '@/app/services/ninjapass'
 
-type Code = {
-  address: string
-  code: string
-}
+// type Code = {
+//   address: string
+//   code: string
+// }
 
-type NinjaPassStoreState = {
-  codes?: Code[]
-}
+// type NinjaPassStoreState = {
+//   codes?: Code[]
+// }
 
-const initialStateFactory = (): NinjaPassStoreState => ({
-  codes: []
-})
+// const initialStateFactory = (): NinjaPassStoreState => ({
+//   codes: []
+// })
 
-export const useNinjaPassStore = defineStore('ninjaPass', {
-  state: (): NinjaPassStoreState => initialStateFactory(),
-  actions: {
-    async fetchCodes() {
-      const ninjaPassStore = useNinjaPassStore()
-      const walletStore = useWalletStore()
+// export const useNinjaPassStore = defineStore('ninjaPass', {
+//   state: (): NinjaPassStoreState => initialStateFactory(),
+//   actions: {
+//     async fetchCodes() {
+//       const ninjaPassStore = useNinjaPassStore()
+//       const walletStore = useWalletStore()
 
-      if (!walletStore.isUserWalletConnected) {
-        return
-      }
+//       if (!walletStore.isUserWalletConnected) {
+//         return
+//       }
 
-      const codes = await fetchNinjaPassCodes(walletStore.injectiveAddress)
+//       const codes = await fetchNinjaPassCodes(walletStore.injectiveAddress)
 
-      ninjaPassStore.$patch({
-        codes: codes || []
-      })
-    }
-  }
-})
+//       ninjaPassStore.$patch({
+//         codes: codes || []
+//       })
+//     }
+//   }
+// })

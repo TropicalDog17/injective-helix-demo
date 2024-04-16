@@ -7,6 +7,7 @@ export const getRoutes = (network: Network, env: string) => {
   const IS_STAGING = env === 'staging'
 
   const spot = [
+    "atom-inj",
     'inj-usdt',
     'stinj-inj',
     'atom-usdt',
@@ -39,7 +40,7 @@ export const getRoutes = (network: Network, env: string) => {
     'whale-usdt',
     'sol-usdt',
     'kuji-usdt',
-    'talis-usdt'
+    'talis-usdt',
   ]
 
   const perpetuals = [
@@ -71,7 +72,8 @@ export const getRoutes = (network: Network, env: string) => {
     'wmatic-usdt',
     'arb-usdt',
     'kuji-usdt',
-    'talis-usdt'
+    'talis-usdt',
+    "atom-inj",
   ]
 
   const binaryOptions: string[] = []
