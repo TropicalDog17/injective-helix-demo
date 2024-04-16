@@ -134,7 +134,7 @@ function toggleFilters() {
         v-model="side"
         :options="sideOptions"
         :placeholder="$t('account.positions.side.label')"
-        :selected-class="'border-gray-600'"
+        :selected-class="'borderClaude-gray-600'"
         is-clearable
         data-cy="universal-table-filter-by-side-select"
       />

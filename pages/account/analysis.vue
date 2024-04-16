@@ -170,60 +170,105 @@ watch(
   }
 )
 </script>
-
 <template>
-  <AppHocLoading :is-loading="isPositionsLoading">
-    <div class="relative overflow-auto">
-      <PartialsAccountPositionsActions
-        v-model:market-denom="marketDenom"
-        v-model:side="side"
-        :market-options="marketOptions"
-        :side-options="sideOptions"
-        @positions:close="onCloseAllPositions"
-      />
+  <div class="bg-black p-6 rounded-lg shadow-md">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-xl font-bold">PnL Analysis</h2>
+      <div class="flex">
+        <button class="px-4 py-2 bg-gray-200 rounded-l-md focus:outline-none">
+          Standard Futures
+        </button>
+        <button class="px-4 py-2 bg-gray-200 rounded-r-md focus:outline-none">
+          USDT-M Perp Futures
+        </button>
+      </div>
+    </div>
 
-      <table class="w-full border-collapse hidden md:table">
-        <PartialsCommonSubaccountPositionHeader is-account />
+    <div class="mb-6">
+      <p class="text-4xl font-bold">194.40</p>
+      <p class="text-gray-500">Total Asset Value (USD)</p>
+    </div>
 
-        <PartialsCommonSubaccountPositionRow
-          v-for="(position, i) in filteredPositions"
-          :key="`position-${i}`"
-          v-bind="{
-            position,
-            isHideBalances
-          }"
-          is-account
-          @share:position="onSharePosition"
-        />
-      </table>
+    <div class="grid grid-cols-3 gap-4 mb-8">
+      <div>
+        <p class="text-lg font-bold">-2.02</p>
+        <p class="text-sm text-gray-500">Today's PnL</p>
+        <p class="text-sm text-gray-500">-1.03%</p>
+      </div>
+      <div>
+        <p class="text-lg font-bold">-9.82</p>
+        <p class="text-sm text-gray-500">7D PnL</p>
+        <p class="text-sm text-gray-500">-1.60%</p>
+      </div>
+      <div>
+        <p class="text-lg font-bold">-27.76</p>
+        <p class="text-sm text-gray-500">30D PnL</p>
+        <p class="text-sm text-gray-500">-9.58%</p>
+      </div>
+    </div>
 
-      <table class="w-full border-collapse table md:hidden">
-        <PartialsCommonSubaccountPositionMobile
-          v-for="(position, i) in filteredPositions"
-          :key="`position-mobile-${i}`"
-          v-bind="{
-            position,
-            isHideBalances
-          }"
-          @share:position="onSharePosition"
-        />
-      </table>
+    <div class="flex justify-between mb-6">
+      <button class="px-4 py-2 bg-blue-200 rounded-md focus:outline-none">
+        PnL Analysis
+      </button>
+      <button class="px-4 py-2 bg-blue-200 rounded-md focus:outline-none">
+        PnL Calendar
+      </button>
+      <button class="px-4 py-2 bg-blue-200 rounded-md focus:outline-none">
+        Assets Distribution
+      </button>
+    </div>
 
-      <CommonEmptyList
-        v-if="isEmpty"
-        class="min-h-3xs bg-gray-900"
-        data-cy="markets-no-data-table"
-        :message="$t('account.positions.empty')"
-      >
-        <span class="mt-2 text-xs text-gray-500">
-          {{ $t('account.positions.empty') }}
-        </span>
-      </CommonEmptyList>
+    <div class="flex justify-between mb-6">
+      <button class="px-4 py-2 bg-blue-200 rounded-md focus:outline-none">
+        Last 7D
+      </button>
+      <button class="px-4 py-2 bg-blue-200 rounded-md focus:outline-none">
+        Last 30D
+      </button>
+      <button class="px-4 py-2 bg-blue-200 rounded-md focus:outline-none">
+        Last 90D
+      </button>
+      <button class="px-4 py-2 bg-blue-200 rounded-md focus:outline-none">
+        Custom
+      </button>
+    </div>
 
-      <ModalsSharePosition
-        v-if="selectedPosition"
-        v-bind="{ position: selectedPosition }"
+    <div class="mb-6">
+      <h3 class="text-lg font-bold mb-2">Statistics</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <p class="text-sm text-gray-500">Total Profit</p>
+          <p class="text-lg font-bold">10.98 USD</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-500">Total Loss</p>
+          <p class="text-lg font-bold">-20.81 USD</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-500">Net PnL</p>
+          <p class="text-lg font-bold">-9.82 USD</p>
+        </div>
+      </div>
+      <button class="mt-2 text-blue-500 focus:outline-none">Details</button>
+    </div>
+
+    <div class="mb-6">
+      <h3 class="text-lg font-bold mb-2">Asset Trend</h3>
+      <img
+        src="path/to/asset-trend-chart.png"
+        alt="Asset Trend Chart"
+        class="w-full"
       />
     </div>
-  </AppHocLoading>
+
+    <div>
+      <h3 class="text-lg font-bold mb-2">Daily PnL</h3>
+      <img
+        src="path/to/daily-pnl-chart.png"
+        alt="Daily PnL Chart"
+        class="w-full"
+      />
+    </div>
+  </div>
 </template>
