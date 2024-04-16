@@ -158,16 +158,13 @@ export const useExchangeStore = defineStore('exchange', {
     async fetchFeeDiscountAccountInfo() {
       // const exchangeStore = useExchangeStore()
       // const walletStore = useWalletStore()
-
       // if (!walletStore.isUserWalletConnected) {
       //   return
       // }
-
       // const feeDiscountAccountInfo =
       //   await exchangeApi.fetchFeeDiscountAccountInfo(
       //     walletStore.authZOrInjectiveAddress
       //   )
-
       // if (feeDiscountAccountInfo) {
       //   exchangeStore.$patch({
       //     feeDiscountAccountInfo

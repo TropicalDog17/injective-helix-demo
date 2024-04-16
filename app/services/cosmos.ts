@@ -49,7 +49,7 @@ export const getFeeabsFee = () => {
     decimals: 6
   })
 }
-console.log(getFeeabsFee())
+// console.log(getFeeabsFee())
 export const confirmCorrectKeplrAddress = async (injectiveAddress: string) => {
   // We only perform this check for Keplr addresses
   if (walletStrategy.getWallet() !== Wallet.Keplr) {
@@ -187,7 +187,7 @@ export const fetchTokensFromChainId = (channel: CosmosChannel) => {
 
       const denomsMapForChannelId =
         channelIbcDenomToBaseDenomMap[
-        channel.bToAChannelId as keyof typeof channelIbcDenomToBaseDenomMap
+          channel.bToAChannelId as keyof typeof channelIbcDenomToBaseDenomMap
         ]
 
       // TODO: handle dot-plank
@@ -201,7 +201,7 @@ export const fetchTokensFromChainId = (channel: CosmosChannel) => {
 
       const baseDenom =
         denomsMapForChannelId[
-        tokenMeta.denom as keyof typeof denomsMapForChannelId
+          tokenMeta.denom as keyof typeof denomsMapForChannelId
         ]
 
       if (!baseDenom) {

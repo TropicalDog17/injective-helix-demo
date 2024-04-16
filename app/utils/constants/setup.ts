@@ -97,19 +97,16 @@ export const IS_TESTNET: Boolean = isTestnet(NETWORK)
 export const IS_STAGING = env.VITE_ENV === 'staging'
 export const IS_MAINNET = false
 
-
-export const CHAIN_ID: ChainId = (
-  ChainId.Mainnet
-) as ChainId
+export const CHAIN_ID: ChainId = ChainId.Mainnet as ChainId
 
 export const ETHEREUM_CHAIN_ID: EthereumChainId = env.VITE_ETHEREUM_CHAIN_ID
   ? parseInt(env.VITE_ETHEREUM_CHAIN_ID.toString())
   : parseInt(
-    (IS_TESTNET || IS_DEVNET
-      ? EthereumChainId.Goerli
-      : EthereumChainId.Mainnet
-    ).toString()
-  )
+      (IS_TESTNET || IS_DEVNET
+        ? EthereumChainId.Goerli
+        : EthereumChainId.Mainnet
+      ).toString()
+    )
 
 function getNetworkEndpointsLocal(network: Network) {
   return {
@@ -121,7 +118,7 @@ function getNetworkEndpointsLocal(network: Network) {
     explorer: 'http://localhost:4446',
     cacheGrpc: 'http://localhost:9091',
     cacheRest: 'https://localhost:4444',
-    web3gw: 'https://localhost:4444',
+    web3gw: 'https://localhost:4444'
   }
 }
 const endpoints = getNetworkEndpointsLocal(NETWORK)
@@ -142,8 +139,7 @@ if (endpointsNotProvided) {
   )
 }
 
-const CAMPAIGN_ENDPOINT =
-  endpoints.indexer
+const CAMPAIGN_ENDPOINT = endpoints.indexer
 
 export const ENDPOINTS = {
   ...endpoints,

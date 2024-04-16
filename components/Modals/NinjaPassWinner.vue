@@ -74,7 +74,6 @@ function closeModal() {
         {{ $t('ninjaPass.description') }}
       </span>
       <div class="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-2">
-
         <button
           class="bg-transparent py-2 h-10 rounded border border-blue-100"
           @click="closeModal"

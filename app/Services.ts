@@ -41,7 +41,6 @@ import {
   NETWORK,
   CHAIN_ID,
   ENDPOINTS,
-  FEE_PAYER_PUB_KEY,
   ETHEREUM_CHAIN_ID,
   COIN_GECKO_OPTIONS
 } from '@/app/utils/constants'
@@ -111,7 +110,7 @@ export const msgBroadcastClient = new MsgBroadcaster({
   network: NETWORK,
   networkEndpoints: ENDPOINTS,
   // feePayerPubKey: FEE_PAYER_PUB_KEY,
-  simulateTx: true,
+  simulateTx: true
 })
 
 export const web3Client = new Web3Client({

@@ -132,7 +132,7 @@ export const submitLimitOrder = async ({
   const actualMessage = walletStore.isAuthzWalletConnected
     ? msgsOrMsgExecMsgs(message, walletStore.injectiveAddress)
     : message
-  console.log(msgBroadcastClient.chainId)
+  // console.log(msgBroadcastClient.chainId)
 
   await msgBroadcastClient.broadcast({
     msgs: actualMessage,
@@ -190,7 +190,7 @@ export const submitMarketOrder = async ({
   const actualMessage = walletStore.isAuthzWalletConnected
     ? msgsOrMsgExecMsgs(message, walletStore.injectiveAddress)
     : message
-  console.log(msgBroadcastClient.chainId)
+  // console.log(msgBroadcastClient.chainId)
   await msgBroadcastClient.broadcast({
     msgs: actualMessage,
     injectiveAddress: walletStore.injectiveAddress
